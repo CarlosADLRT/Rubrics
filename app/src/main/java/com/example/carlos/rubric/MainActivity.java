@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
                 fragmentClass = Asignaturas.class;
                 break;
             case R.id.rubricas:
-                //fragmentClass = SecondFragment.class;
+                //fragmentClass = FirstFragment.class;
                 break;
             case R.id.reportes:
                 //fragmentClass = ThirdFragment.class;

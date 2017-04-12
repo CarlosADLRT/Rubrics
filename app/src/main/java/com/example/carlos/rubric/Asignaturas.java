@@ -1,12 +1,20 @@
 package com.example.carlos.rubric;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 
 /**
@@ -17,11 +25,28 @@ import android.view.ViewGroup;
  */
 public class Asignaturas extends Fragment {
 
+    private ViewGroup layout;
+    private ScrollView scrollView;
+    RelativeLayout[] relativeLayout=new RelativeLayout[100];
+    TextView textView;
+    EditText text;
+    int id,i=0;
+    String var="";
     private OnFragmentInteractionListener mListener;
 
     public Asignaturas() {
         // Required empty public constructor
 
+    }
+    @SuppressLint("InlinedApi")
+    private void addChild() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        id = R.layout.edit;
+        relativeLayout[i] = (RelativeLayout) inflater.inflate(id, null, false);
+        text= (EditText) relativeLayout[i].findViewById(R.id.editText);
+        var = text.getText().toString();
+        layout.addView(relativeLayout[i]);
+        i++;
     }
 
 
@@ -29,7 +54,38 @@ public class Asignaturas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_asignaturas, container, false);
+        View v = inflater.inflate(R.layout.fragment_asignaturas, container, false);
+        layout = (ViewGroup) v.findViewById(R.id.content);
+        scrollView = (ScrollView) v.findViewById(R.id.scrollView);
+        initUI(v);
+
+        return v;
+    }
+
+    private void initUI(View v) {
+        Button b1 = (Button) v.findViewById(R.id.add);
+        b1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                addChild();
+                // TODO Auto-generated method stub
+
+            }
+
+        });
+        Button b2 = (Button) v.findViewById(R.id.delet);
+        b2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                layout.removeAllViews();
+                i=0;
+                // TODO Auto-generated method stub
+
+            }
+
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
