@@ -10,8 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements Asignaturas.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements Asignaturas.OnFragmentInteractionListener, Rubricas.OnFragmentInteractionListener, Reportes.OnFragmentInteractionListener {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
@@ -22,12 +23,20 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp);
 
         // Find our drawer view
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         // Find our drawer view
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.openDrawer(GravityCompat.START);
+
+            }
+        });
         setupDrawerContent(nvDrawer);
     }
 
@@ -61,10 +70,10 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
                 fragmentClass = Asignaturas.class;
                 break;
             case R.id.rubricas:
-                //fragmentClass = SecondFragment.class;
+                fragmentClass = Rubricas.class;
                 break;
             case R.id.reportes:
-                //fragmentClass = ThirdFragment.class;
+                fragmentClass = Reportes.class;
                 break;
             default:
                 fragmentClass = FirstFragment.class;
