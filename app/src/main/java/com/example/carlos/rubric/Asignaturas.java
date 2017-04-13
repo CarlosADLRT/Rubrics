@@ -35,7 +35,6 @@ public class Asignaturas extends Fragment {
     TextView textView;
     EditText text,text2;
     CheckBox chek;
-
     int id,tam=0,n,ii=1;
     String var="",num="";
     private OnFragmentInteractionListener mListener;
