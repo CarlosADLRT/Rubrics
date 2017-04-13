@@ -8,7 +8,10 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="458dp">
+        android:layout_height="360dp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/content"
@@ -46,6 +49,33 @@
 
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/tam"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:hint="N"
+        android:inputType="number"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_above="@+id/scrollView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:text="Numero de Asignaturas"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/tam"
+        android:layout_alignBottom="@+id/tam"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -10,11 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -27,11 +31,12 @@ public class Asignaturas extends Fragment {
 
     private ViewGroup layout;
     private ScrollView scrollView;
-    RelativeLayout[] relativeLayout=new RelativeLayout[100];
+    ArrayList<RelativeLayout> relativeLayout=new ArrayList();
     TextView textView;
-    EditText text;
-    int id,i=0;
-    String var="";
+    EditText text,text2;
+    CheckBox chek;
+    int id,tam=0,n,ii=1;
+    String var="",num="";
     private OnFragmentInteractionListener mListener;
 
     public Asignaturas() {
@@ -39,16 +44,28 @@ public class Asignaturas extends Fragment {
 
     }
     @SuppressLint("InlinedApi")
-    private void addChild() {
+    private void addChild(int i) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         id = R.layout.edit;
-        relativeLayout[i] = (RelativeLayout) inflater.inflate(id, null, false);
-        text= (EditText) relativeLayout[i].findViewById(R.id.editText);
-        var = text.getText().toString();
-        layout.addView(relativeLayout[i]);
-        i++;
+        RelativeLayout rl= (RelativeLayout) inflater.inflate(id, null, false);
+        relativeLayout.add(rl);
+        text= (EditText) rl.findViewById(R.id.editText);
+        text.setText("Asignatura "+(i));
+        layout.addView(rl);
     }
-
+    public void remove(){
+        int i=0;
+        while(i<relativeLayout.size()) {
+            chek=(CheckBox) relativeLayout.get(i).findViewById(R.id.delet);
+            if (chek.isChecked()) {
+                layout.removeViewAt(i);
+                relativeLayout.remove(i);
+                i=0;
+            }else{
+                i++;
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,17 +75,27 @@ public class Asignaturas extends Fragment {
         layout = (ViewGroup) v.findViewById(R.id.content);
         scrollView = (ScrollView) v.findViewById(R.id.scrollView);
         initUI(v);
-
         return v;
     }
 
     private void initUI(View v) {
         Button b1 = (Button) v.findViewById(R.id.add);
+        text2= (EditText) v.findViewById(R.id.tam);
         b1.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-                addChild();
+
+                num = text2.getText().toString();
+                if(num.equals("")){
+                    n=0;
+                }else{
+                    n=Integer.parseInt(num);
+                    tam=tam+n;
+                }
+                for(int i=0;i<n;i++) {
+                    addChild(ii);
+                    ii++;
+                }
                 // TODO Auto-generated method stub
 
             }
@@ -79,8 +106,8 @@ public class Asignaturas extends Fragment {
 
             @Override
             public void onClick(View arg0) {
-                layout.removeAllViews();
-                i=0;
+                //layout.removeViewAt(1);
+                remove();
                 // TODO Auto-generated method stub
 
             }
