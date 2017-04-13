@@ -12,16 +12,15 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Asignaturas.OnFragmentInteractionListener} interface
+ * {@link Reportes.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class Asignaturas extends Fragment {
+public class Reportes extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Asignaturas() {
+    public Reportes() {
         // Required empty public constructor
-
     }
 
 
@@ -29,8 +28,7 @@ public class Asignaturas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_asignaturas, container, false);
-
+        return inflater.inflate(R.layout.fragment_reportes, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

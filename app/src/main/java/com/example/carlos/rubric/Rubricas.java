@@ -3,34 +3,72 @@ package com.example.carlos.rubric;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Asignaturas.OnFragmentInteractionListener} interface
+ * {@link Rubricas.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class Asignaturas extends Fragment {
+public class Rubricas extends Fragment {
 
+    private static final String TAG = "RecyclerViewFragment";
+    private static final String KEY_LAYOUT_MANAGER = "layoutManager";
+    private static final int SPAN_COUNT = 2;
+    private static final int DATASET_COUNT = 60;
     private OnFragmentInteractionListener mListener;
+    protected ArrayList<Asignatura> mDataset = new ArrayList();
+    protected LayoutManagerType mCurrentLayoutManagerType;
 
-    public Asignaturas() {
-        // Required empty public constructor
 
+    private enum LayoutManagerType {
+        GRID_LAYOUT_MANAGER,
+        LINEAR_LAYOUT_MANAGER
     }
 
+    protected RecyclerView mRecyclerView;
+    protected Adapter mAdapter;
+    protected RecyclerView.LayoutManager mLayoutManager;
+
+    public Rubricas() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_asignaturas, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_rubricas, container, false);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.frubricas_recycler);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+        if (savedInstanceState != null) {
+            // Restore saved layout manager type.
+            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
+                    .getSerializable(KEY_LAYOUT_MANAGER);
+        }
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDataset.add(new Asignatura("Ingles"));
+        mAdapter = new Adapter(mDataset);
+        // Set CustomAdapter as the adapter for RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
 
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
