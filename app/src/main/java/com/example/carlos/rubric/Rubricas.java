@@ -37,7 +37,7 @@ public class Rubricas extends Fragment {
     }
 
     protected RecyclerView mRecyclerView;
-    protected Adapter mAdapter;
+    protected Rubric mRubric;
     protected RecyclerView.LayoutManager mLayoutManager;
 
     public Rubricas() {
@@ -64,9 +64,9 @@ public class Rubricas extends Fragment {
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mDataset.add(new Asignatura("Ingles"));
-        mAdapter = new Adapter(mDataset);
+        mRubric = new Rubric(mDataset);
         // Set CustomAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mRubric);
 
         return rootView;
     }
@@ -95,7 +95,7 @@ public class Rubricas extends Fragment {
         mListener = null;
     }
 
-    /**
+     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that

@@ -8,9 +8,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Asignatura"
-        android:inputType="textPersonName"
-        android:text="Asignatura" />
+        android:inputType="textPersonName" />
 
     <CheckBox
         android:id="@+id/delet"
@@ -23,4 +21,17 @@
         android:layout_toRightOf="@+id/editText"
         android:checked="false"
         android:text="Eliminar" />
+
+    <EditText
+        android:id="@+id/peso"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
