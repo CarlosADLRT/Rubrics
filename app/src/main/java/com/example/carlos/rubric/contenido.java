@@ -70,7 +70,7 @@ public class contenido extends AppCompatActivity {
         text= (EditText) rl.findViewById(R.id.editText);
         text.setText("Elemento "+(i));
         text2= (EditText) rl.findViewById(R.id.peso);
-        text2.setText("X%");
+        text2.setHint("X%");
         relativeLayout.add(rl);
         layout.addView(rl);
     }
@@ -80,6 +80,12 @@ public class contenido extends AppCompatActivity {
     }
 
     public void next(View view) {
+        Category categoria = new Category();
+        categoria.setAsignatura(asig);
+        categoria.setCategoria(cat);
+        categoria.setnE(Integer.parseInt(elem));
+        categoria.setPeso(Integer.parseInt(peso));
+        categoria.save();
         for (int i = 0; i < tam; i++){
             Intent in1 = new Intent(this, conenido2.class);
             text4=(EditText) relativeLayout.get(i).findViewById(R.id.lvl);

@@ -51,7 +51,7 @@ public class nrubrica extends AppCompatActivity {
         text= (EditText) rl.findViewById(R.id.editText);
         text.setText("Categoria "+(i));
         text2= (EditText) rl.findViewById(R.id.peso);
-        text2.setText("X%");
+        text2.setHint("X%");
         text3= (EditText) rl.findViewById(R.id.nelem);
         text3.setHint("Elem");
         text4= (EditText) rl.findViewById(R.id.lvl);
@@ -99,8 +99,9 @@ public class nrubrica extends AppCompatActivity {
         Rubric rubrica = new Rubric();
         rubrica.setAsignatura(asg);
         rubrica.setRubric(asg);
-        rubrica.setNCat(tam);
         rubrica.save();
+        //rubrica.setNcat(tam);
+        //rubrica.save();
         for (int i = 0; i < tam; i++){
             Intent in = new Intent(this, contenido.class);
             text = (EditText) relativeLayout.get(i).findViewById(R.id.editText);

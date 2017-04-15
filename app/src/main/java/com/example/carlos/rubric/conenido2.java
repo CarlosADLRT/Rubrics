@@ -75,6 +75,12 @@ public class conenido2 extends AppCompatActivity {
     }
 
     public void end(View view) {
+        Category categoria = new Category();
+        categoria.setAsignatura(asig);
+        categoria.setCategoria(cat);
+        categoria.setnE(Integer.parseInt(elem));
+        categoria.setPeso(Integer.parseInt(peso));
+        categoria.save();
         finish();
     }
 

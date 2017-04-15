@@ -14,19 +14,9 @@ public class Rubric extends BaseModel{
     String Rubric;
     @Column
     String Asignatura;
-    @Column
-    int NCat;
 
     public Rubric() {
 
-    }
-
-    public int getNCat() {
-        return NCat;
-    }
-
-    public void setNCat(int NCat) {
-        this.NCat = NCat;
     }
 
     public String getRubric() {
