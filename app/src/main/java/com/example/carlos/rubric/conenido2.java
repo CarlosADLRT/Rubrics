@@ -23,7 +23,7 @@ public class conenido2 extends AppCompatActivity {
     TextView tv;
     CheckBox chek;
     int id,tam=0,n,ii=1;
-    String var="",num="";
+    String var="",num="",cat,peso,asig,elem,niv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,13 @@ public class conenido2 extends AppCompatActivity {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         tv=(TextView) findViewById(R.id.textView2);
         tv.setText(getIntent().getStringExtra("name"));
+        num=getIntent().getStringExtra("elementos");
         var=getIntent().getStringExtra("niveles");
+        elem=num;
+        niv=var;
+        cat=getIntent().getStringExtra("categoria");
+        peso=getIntent().getStringExtra("pesoc");
+        asig=getIntent().getStringExtra("asignatura");
         tam=Integer.parseInt(var);
         for(int i=0;i<tam;i++) {
             addChild(ii);

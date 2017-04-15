@@ -25,7 +25,7 @@ public class nrubrica extends AppCompatActivity {
     EditText text,text2,text3,text4,tm;
     CheckBox chek;
     int id,tam=0,n,ii=1;
-    String var="",num="";
+    String asg="",num="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,8 @@ public class nrubrica extends AppCompatActivity {
         setContentView(R.layout.nrubrica);
         layout = (ViewGroup) findViewById(R.id.content);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
+        asg=getIntent().getStringExtra("asignatura");
+
     }
 
     @Override
@@ -47,7 +49,7 @@ public class nrubrica extends AppCompatActivity {
         id = R.layout.cat;
         RelativeLayout rl= (RelativeLayout) inflater.inflate(id, null, false);
         text= (EditText) rl.findViewById(R.id.editText);
-        text.setText("Asignatura "+(i));
+        text.setText("Categoria "+(i));
         text2= (EditText) rl.findViewById(R.id.peso);
         text2.setText("X%");
         text3= (EditText) rl.findViewById(R.id.nelem);
@@ -94,13 +96,22 @@ public class nrubrica extends AppCompatActivity {
     }
 
     public void next(View view) {
+        Rubric rubrica = new Rubric();
+        rubrica.setAsignatura(asg);
+        rubrica.setRubric(asg);
+        rubrica.setNCat(tam);
+        rubrica.save();
         for (int i = 0; i < tam; i++){
             Intent in = new Intent(this, contenido.class);
+            text = (EditText) relativeLayout.get(i).findViewById(R.id.editText);
+            text2 = (EditText) relativeLayout.get(i).findViewById(R.id.peso);
             text3 = (EditText) relativeLayout.get(i).findViewById(R.id.nelem);
             text4 = (EditText) relativeLayout.get(i).findViewById(R.id.lvl);
             in.putExtra("elementos", text3.getText().toString());
             in.putExtra("niveles", text4.getText().toString());
-            Toast.makeText(this, text3.getText().toString(), Toast.LENGTH_LONG).show();
+            in.putExtra("categoria",text.getText().toString());
+            in.putExtra("pesoc",text2.getText().toString());
+            in.putExtra("asignatura",asg);
             intents.add(in);
             startActivityForResult(in, i);
         }

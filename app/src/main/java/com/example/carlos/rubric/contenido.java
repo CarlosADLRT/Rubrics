@@ -10,8 +10,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
+
+import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class contenido extends AppCompatActivity {
 
@@ -22,7 +26,7 @@ public class contenido extends AppCompatActivity {
     EditText text,text2,text3,text4,tm;
     CheckBox chek;
     int id,tam=0,n,ii=1;
-    String var="",num="";
+    String var="",num="",asig,cat,peso,elem,niv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,13 @@ public class contenido extends AppCompatActivity {
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         num=getIntent().getStringExtra("elementos");
         var=getIntent().getStringExtra("niveles");
+        elem=num;
+        niv=var;
+        cat=getIntent().getStringExtra("categoria");
+        peso=getIntent().getStringExtra("pesoc");
+        asig=getIntent().getStringExtra("asignatura");
+        List<Rubric> ru = (List<Rubric>) new Select(Rubric_Table.Asignatura).from(Rubric.class).where(Rubric_Table.Rubric.is(asig)).queryList();
+        //Toast.makeText(this,"Nota: "+nota, Toast.LENGTH_LONG).show();
         tam=Integer.parseInt(num);
         for(int i=0;i<tam;i++) {
             addChild(ii);
@@ -72,6 +83,10 @@ public class contenido extends AppCompatActivity {
         for (int i = 0; i < tam; i++){
             Intent in1 = new Intent(this, conenido2.class);
             text4=(EditText) relativeLayout.get(i).findViewById(R.id.lvl);
+            in1.putExtra("asignatura",asig);
+            in1.putExtra("pesoc",peso);
+            in1.putExtra("categoria",cat);
+            in1.putExtra("elementos",elem);
             in1.putExtra("niveles", var);
             in1.putExtra("name", text.getText().toString());
             intents.add(in1);
