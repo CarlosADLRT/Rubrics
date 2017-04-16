@@ -1,8 +1,10 @@
 package com.example.carlos.rubric;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +34,10 @@ public class Rubricas extends Fragment {
     protected RecyclerView mRecyclerView;
     protected Adapter mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
+    protected FloatingActionButton floatingActionButton;
     private OnFragmentInteractionListener mListener;
+
+    static Context context;
     public Rubricas() {
         // Required empty public constructor
     }
@@ -47,6 +52,15 @@ public class Rubricas extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_rubricas, container, false);
+        floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.rubric_add);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detail = new Intent(getContext(),nrubrica.class);
+                detail.putExtra("asignatura","Rubrica Global");
+                startActivity(detail);
+            }
+        });
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.frubricas_recycler);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
