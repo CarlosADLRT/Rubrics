@@ -12,7 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -54,8 +53,6 @@ public class nrubrica extends AppCompatActivity {
         text2.setHint("X%");
         text3= (EditText) rl.findViewById(R.id.nelem);
         text3.setHint("Elem");
-        text4= (EditText) rl.findViewById(R.id.lvl);
-        text4.setHint("Nivel");
         relativeLayout.add(rl);
         layout.addView(rl);
     }
@@ -100,17 +97,15 @@ public class nrubrica extends AppCompatActivity {
         rubrica.setAsignatura(asg);
         rubrica.setRubric(asg);
         rubrica.save();
-        //rubrica.setNcat(tam);
-        //rubrica.save();
+        text4= (EditText) findViewById(R.id.lvl);
         for (int i = 0; i < tam; i++){
             Intent in = new Intent(this, contenido.class);
             text = (EditText) relativeLayout.get(i).findViewById(R.id.editText);
             text2 = (EditText) relativeLayout.get(i).findViewById(R.id.peso);
             text3 = (EditText) relativeLayout.get(i).findViewById(R.id.nelem);
-            text4 = (EditText) relativeLayout.get(i).findViewById(R.id.lvl);
             in.putExtra("elementos", text3.getText().toString());
-            in.putExtra("niveles", text4.getText().toString());
             in.putExtra("categoria",text.getText().toString());
+            in.putExtra("niveles",text4.getText().toString());
             in.putExtra("pesoc",text2.getText().toString());
             in.putExtra("asignatura",asg);
             intents.add(in);

@@ -12,6 +12,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public class Rubric extends BaseModel{
     @PrimaryKey
     String Rubric;
+
     @Column
     String Asignatura;
 
