@@ -28,6 +28,7 @@ public class Reportes extends Fragment {
     private OnFragmentInteractionListener mListener;
     private RadioGroup radioGroup;
     private Spinner spinnerEst;
+
     public Reportes() {
         // Required empty public constructor
     }
@@ -38,7 +39,7 @@ public class Reportes extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reportes, container, false);
-        Spinner spinner = (Spinner) view.findViewById(R.id.freportes_spinner_asig);
+        final Spinner spinner = (Spinner) view.findViewById(R.id.freportes_spinner_asig);
         List<Asignatura> asignaturas = new Select().from(Asignatura.class).queryList();
         ArrayAdapter<Asignatura> adapter = new ArrayAdapter<Asignatura>(view.getContext(), R.layout.spinner_item, asignaturas);
         adapter.setDropDownViewResource(R.layout.spinner_item);
@@ -48,16 +49,19 @@ public class Reportes extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
-                    case R.id.radio_est:
+                    case R.id.radio_eva:
+                        final String asignatura = spinner.getSelectedItem().toString();
                         List<Evaluacion> asignaturas = new Select().from(Evaluacion.class).queryList();
                         ArrayAdapter<Evaluacion> adapterarray = new ArrayAdapter<Evaluacion>(getContext(), R.layout.spinner_item, asignaturas);
                         adapterarray.setDropDownViewResource(R.layout.spinner_item);
                         spinnerEst.setAdapter(adapterarray);
                         spinnerEst.setVisibility(View.VISIBLE);
                         break;
-                    case R.id.radio_eva:
-                        List<Estudiante> asignaturas2 = new Select().from(Estudiante.class).queryList();
-                        ArrayAdapter<Estudiante> adapterarray2 = new ArrayAdapter<Estudiante>(getContext(), R.layout.spinner_item, asignaturas2);
+                    case R.id.radio_est:
+                        final String asignatura2 = spinner.getSelectedItem().toString();
+
+                        List<Cursando> asignaturas2 = new Select().from(Cursando.class).where(Cursando_Table.Asignatura.is(asignatura2)).queryList();
+                        ArrayAdapter<Cursando> adapterarray2 = new ArrayAdapter<Cursando>(getContext(), R.layout.spinner_item, asignaturas2);
                         adapterarray2.setDropDownViewResource(R.layout.spinner_item);
                         spinnerEst.setAdapter(adapterarray2);
                         spinnerEst.setVisibility(View.VISIBLE);

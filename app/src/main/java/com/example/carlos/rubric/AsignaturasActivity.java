@@ -21,12 +21,13 @@ public class AsignaturasActivity extends AppCompatActivity implements AdapterEva
     protected RecyclerView mRecyclerView;
     protected AdapterEvaluacion mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asignaturas);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.activity_asignaturas_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.activity_asignaturas_toolbar);
         String title = getIntent().getStringExtra("Nombre");
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
@@ -44,7 +45,9 @@ public class AsignaturasActivity extends AppCompatActivity implements AdapterEva
     public void Click(View view) {
         switch (view.getId()) {
             case R.id.activity_asignaturas_button_addEstudiante:
-                startActivityForResult(new Intent(this, AddEstudiante.class), 0);
+                Intent intent = new Intent(this, AddEstudiante.class);
+                intent.putExtra("Asignatura", toolbar.getTitle().toString());
+                startActivityForResult(intent, 0);
                 break;
             case R.id.activity_asignaturas_button_addExamen:
                 startActivityForResult(new Intent(this, AddEvaluacionActivity.class), 0);
@@ -68,7 +71,7 @@ public class AsignaturasActivity extends AppCompatActivity implements AdapterEva
         Intent intent = new Intent(this, EvaluacionActivity.class);
         TextView textView = (TextView) view.findViewById(R.id.row_textview);
 
-        intent.putExtra("Nombre", textView.getText().toString());
+        intent.putExtra("Nombre", toolbar.getTitle().toString());
         startActivityForResult(intent, 0);
     }
 }

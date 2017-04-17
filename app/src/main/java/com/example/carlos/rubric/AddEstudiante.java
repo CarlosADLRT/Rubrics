@@ -31,7 +31,12 @@ public class AddEstudiante extends AppCompatActivity {
                 Estudiante estudiante = new Estudiante();
                 estudiante.setNombre(editText.getText().toString());
                 estudiante.save();
-                List<Estudiante> list = new Select().from(Estudiante.class).queryList();
+                Cursando cursando = new Cursando();
+                cursando.setAsignatura(getIntent().getStringExtra("Asignatura"));
+                cursando.setEstudiante(editText.getText().toString());
+                cursando.save();
+                List<Cursando> list = new Select().from(Cursando.class).queryList();
+
                 finish();
             }
         });

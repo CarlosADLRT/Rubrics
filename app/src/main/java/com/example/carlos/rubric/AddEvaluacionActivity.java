@@ -42,6 +42,11 @@ public class AddEvaluacionActivity extends AppCompatActivity {
                 //Aquí va la actividad del relleno de
                 //Intent intent = new Intent(this,)
                 //startActivityForResult();
+                Evaluacion evaluacion = new Evaluacion();
+                evaluacion.setRubrica("1");
+                evaluacion.setNumber("1");
+                evaluacion.save();
+                finish();
             }
         });
 
