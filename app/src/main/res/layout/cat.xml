@@ -45,15 +45,4 @@
         android:ems="10"
         android:inputType="number" />
 
-    <EditText
-        android:id="@+id/lvl"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nelem"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_toEndOf="@+id/nelem"
-        android:layout_toRightOf="@+id/nelem"
-        android:ems="10"
-        android:inputType="number" />
 </RelativeLayout>
