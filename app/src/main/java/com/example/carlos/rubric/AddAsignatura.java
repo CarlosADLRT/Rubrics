@@ -16,7 +16,7 @@ public class AddAsignatura extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_asignatura);
         mButton = (Button) findViewById(R.id.addAsignatura_button);
-        mEditText = (EditText) findViewById(R.id.aaddAsignatura_edittext);
+        mEditText = (EditText) findViewById(R.id.aadd_estudiante_edittext);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -24,7 +24,10 @@ public class AddAsignatura extends AppCompatActivity {
                 asignatura.setNombre(mEditText.getText().toString());
                 asignatura.save();
                 finish();
+
             }
         });
     }
+
+
 }

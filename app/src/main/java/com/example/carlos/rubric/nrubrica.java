@@ -2,9 +2,9 @@ package com.example.carlos.rubric;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +12,19 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class nrubrica extends AppCompatActivity {
 
-    private ViewGroup layout;
-    private ScrollView scrollView;
     ArrayList<RelativeLayout> relativeLayout=new ArrayList();
     ArrayList<Intent> intents=new ArrayList();
     EditText text,text2,text3,text4,tm;
     CheckBox chek;
     int id,tam=0,n,ii=1;
     String asg="",num="";
+    private ViewGroup layout;
+    private ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,4 +121,6 @@ public class nrubrica extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }

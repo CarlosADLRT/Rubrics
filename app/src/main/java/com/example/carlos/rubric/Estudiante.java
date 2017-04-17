@@ -5,29 +5,31 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 /**
- * Created by carlos on 3/04/17.
+ * Created by carlos on 16/04/17.
  */
 @Table(database = AppDatabase.class)
-public class Asignatura extends BaseModel {
-
+public class Estudiante extends BaseModel {
     @PrimaryKey
-    String Nombre;
+    String nombre;
 
-    public void Asignatura(String nombre) {
-        this.Nombre = nombre;
+    public Estudiante(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Estudiante() {
 
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     @Override
     public String toString() {
-        return Nombre;
+        return nombre;
     }
 }

@@ -36,16 +36,19 @@
             android:orientation="vertical">
 
             <RadioGroup
+                android:id="@+id/group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
                 <RadioButton
+                    android:id="@+id/radio_est"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Estudiante" />
 
                 <RadioButton
+                    android:id="@+id/radio_eva"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Evaluación" />

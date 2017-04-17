@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.raizlabs.android.dbflow.sql.language.Select;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  * {@link Asignaturas.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class Asignaturas extends Fragment {
+public class Asignaturas extends Fragment implements Adapter.RecyclerClickListner {
 
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     protected ArrayList<Asignatura> mDataset = new ArrayList();
@@ -33,6 +34,7 @@ public class Asignaturas extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     protected FloatingActionButton floatingActionButton;
     private OnFragmentInteractionListener mListener;
+    private android.app.FragmentManager supportFragmentManager;
 
     //Buenas
     public Asignaturas() {
@@ -55,25 +57,20 @@ public class Asignaturas extends Fragment {
         });
         // Inflate the layout for this fragment
         mRecyclerView = (RecyclerView) view.findViewById(R.id.fasignaturas_recycler);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-        if (savedInstanceState != null) {
-            // Restore saved layout manager type.
-            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
-                    .getSerializable(KEY_LAYOUT_MANAGER);
-        }
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mDataset = (ArrayList<Asignatura>) new Select().from(Asignatura.class).queryList();
         mAdapter = new Adapter(mDataset);
+        mAdapter.setRecyclerClickListner(this);
         // Set CustomAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -98,6 +95,20 @@ public class Asignaturas extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public android.app.FragmentManager getSupportFragmentManager() {
+        return supportFragmentManager;
+    }
+
+    //Click del item para que te lleve  a una nueva asignatura
+    @Override
+    public void itemClick(View view, int position) {
+        Intent intent = new Intent(getContext(), AsignaturasActivity.class);
+        TextView textView = (TextView) view.findViewById(R.id.row_textview);
+
+        intent.putExtra("Nombre", textView.getText().toString());
+        startActivityForResult(intent, 0);
     }
 
     private enum LayoutManagerType {

@@ -14,22 +14,17 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by carlos on 3/04/17.
+ * Created by carlos on 16/04/17.
  */
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class AdapterRubricas extends RecyclerView.Adapter<AdapterRubricas.ViewHolder> {
     static Context context;
-    private List<Asignatura> data;
-    private Adapter.RecyclerClickListner mRecyclerClickListner;
+    private List<Rubric> data;
     //Constructor
 
 
-    public Adapter(List<Asignatura> data) {
-        this.data=data;
-    }
-
-    public void setRecyclerClickListner(RecyclerClickListner recyclerClickListner) {
-        mRecyclerClickListner = recyclerClickListner;
+    public AdapterRubricas(List<Rubric> data) {
+        this.data = data;
     }
 
     @Override
@@ -43,8 +38,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(this.data.get(position).getNombre());
-
+        holder.mTextView.setText(this.data.get(position).getRubric());
     }
 
     @Override
@@ -52,21 +46,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return data.size();
     }
 
-
-    public interface RecyclerClickListner {
-        public void itemClick(View view, int position);
-    }
-
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView mTextView;
         public Button mButton;
+
         public ViewHolder(View v) {
             super(v);
-            v.setOnClickListener(this);
             mTextView = (TextView) v.findViewById(R.id.row_textview);
             mButton = (Button) v.findViewById(R.id.row_button);
             mButton.setOnClickListener(new View.OnClickListener() {
@@ -74,23 +63,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onClick(View arg0) {
-                    context=itemView.getContext();
-                    Intent detail = new Intent(context.getApplicationContext(),nrubrica.class);
-                    detail.putExtra("asignatura",mTextView.getText().toString());
+                    context = itemView.getContext();
+                    Intent detail = new Intent(context.getApplicationContext(), nrubrica.class);
+                    detail.putExtra("asignatura", mTextView.getText().toString());
                     context.startActivity(detail);
                     // TODO Auto-generated method stub
                 }
 
             });
         }
-
-        @Override
-        public void onClick(View v) {
-            if (mRecyclerClickListner != null) {
-                mRecyclerClickListner.itemClick(v, getPosition());
-            }
-
-        }
-
     }
 }

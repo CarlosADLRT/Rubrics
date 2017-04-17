@@ -35,4 +35,8 @@ public class Rubric extends BaseModel{
         Asignatura = asignatura;
     }
 
+    @Override
+    public String toString() {
+        return Rubric;
+    }
 }

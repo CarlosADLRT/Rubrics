@@ -19,7 +19,15 @@
         <activity android:name=".AddAsignatura" />
         <activity android:name=".nrubrica" />
         <activity android:name=".contenido" />
-        <activity android:name=".conenido2"></activity>
+        <activity android:name=".conenido2" />
+        <activity
+            android:name=".AsignaturasActivity"
+            android:label="@string/title_activity_asignaturas"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".AddEvaluacionActivity" />
+        <activity android:name=".AddEstudiante" />
+        <activity android:name=".EvaluacionActivity" />
+        <activity android:name=".AddNotaActivity"></activity>
     </application>
 
 </manifest>

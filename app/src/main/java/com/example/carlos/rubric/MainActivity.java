@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
+    private RadioGroup radioGroup;
+    private Spinner spinnerEst;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
         // Find our drawer view
         nvDrawer = (NavigationView) findViewById(R.id.nvView);
         // Setup drawer view
+        mDrawer.openDrawer(GravityCompat.START);
+        radioGroup = (RadioGroup) findViewById(R.id.group);
+        spinnerEst = (Spinner) findViewById(R.id.freportes_spinner_es);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +52,17 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
             }
         });
         setupDrawerContent(nvDrawer);
+        Fragment fragment = null;
+        Class fragmentClass = Asignaturas.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
     }
 
     @Override
@@ -71,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
     private void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
-        Class fragmentClass = FirstFragment.class;
+        Class fragmentClass;
         switch(menuItem.getItemId()) {
             case R.id.asignaturas:
                 fragmentClass = Asignaturas.class;
@@ -83,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements Asignaturas.OnFra
                 fragmentClass = Reportes.class;
                 break;
             default:
-                fragmentClass = FirstFragment.class;
+                fragmentClass = Asignatura.class;
         }
 
         try {

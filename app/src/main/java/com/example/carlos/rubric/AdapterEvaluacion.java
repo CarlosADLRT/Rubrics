@@ -1,7 +1,6 @@
 package com.example.carlos.rubric;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
@@ -14,18 +13,18 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by carlos on 3/04/17.
+ * Created by carlos on 16/04/17.
  */
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class AdapterEvaluacion extends RecyclerView.Adapter<AdapterEvaluacion.ViewHolder> {
     static Context context;
-    private List<Asignatura> data;
-    private Adapter.RecyclerClickListner mRecyclerClickListner;
+    private List<Evaluacion> data;
+    private RecyclerClickListner mRecyclerClickListner;
     //Constructor
 
 
-    public Adapter(List<Asignatura> data) {
-        this.data=data;
+    public AdapterEvaluacion(List<Evaluacion> data) {
+        this.data = data;
     }
 
     public void setRecyclerClickListner(RecyclerClickListner recyclerClickListner) {
@@ -43,7 +42,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(this.data.get(position).getNombre());
+        holder.mTextView.setText(this.data.get(position).getNumber());
 
     }
 
@@ -64,9 +63,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         // each data item is just a string in this case
         public TextView mTextView;
         public Button mButton;
+
         public ViewHolder(View v) {
             super(v);
-            v.setOnClickListener(this);
             mTextView = (TextView) v.findViewById(R.id.row_textview);
             mButton = (Button) v.findViewById(R.id.row_button);
             mButton.setOnClickListener(new View.OnClickListener() {
@@ -74,14 +73,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                 @Override
                 public void onClick(View arg0) {
-                    context=itemView.getContext();
-                    Intent detail = new Intent(context.getApplicationContext(),nrubrica.class);
-                    detail.putExtra("asignatura",mTextView.getText().toString());
-                    context.startActivity(detail);
+                    ;
                     // TODO Auto-generated method stub
                 }
 
             });
+            v.setOnClickListener(this);
         }
 
         @Override
@@ -89,8 +86,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             if (mRecyclerClickListner != null) {
                 mRecyclerClickListner.itemClick(v, getPosition());
             }
-
         }
-
     }
 }

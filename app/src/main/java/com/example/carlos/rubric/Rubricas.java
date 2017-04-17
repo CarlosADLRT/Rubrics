@@ -27,10 +27,10 @@ public class Rubricas extends Fragment {
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 60;
-    protected ArrayList<Asignatura> mDataset = new ArrayList();
+    protected ArrayList<Rubric> mDataset = new ArrayList();
     protected LayoutManagerType mCurrentLayoutManagerType;
     protected RecyclerView mRecyclerView;
-    protected Adapter mAdapter;
+    protected AdapterRubricas mAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
     private OnFragmentInteractionListener mListener;
     public Rubricas() {
@@ -56,8 +56,8 @@ public class Rubricas extends Fragment {
                     .getSerializable(KEY_LAYOUT_MANAGER);
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mDataset = (ArrayList<Asignatura>) new Select().from(Asignatura.class).queryList();
-        mAdapter = new Adapter(mDataset);
+        mDataset = (ArrayList<Rubric>) new Select().from(Rubric.class).queryList();
+        mAdapter = new AdapterRubricas(mDataset);
         // Set CustomAdapter as the adapter for RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
 
