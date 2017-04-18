@@ -61,7 +61,6 @@ public class Reportes extends Fragment {
                         break;
                     case R.id.radio_est:
                         final String asignatura2 = spinner.getSelectedItem().toString();
-
                         List<Cursando> asignaturas2 = new Select().from(Cursando.class).where(Cursando_Table.Asignatura.is(asignatura2)).queryList();
                         ArrayAdapter<Cursando> adapterarray2 = new ArrayAdapter<Cursando>(getContext(), R.layout.spinner_item, asignaturas2);
                         adapterarray2.setDropDownViewResource(R.layout.spinner_item);
