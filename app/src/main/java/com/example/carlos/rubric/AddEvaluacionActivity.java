@@ -44,7 +44,6 @@ public class AddEvaluacionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Aquí va la actividad del relleno de
                 //Intent intent = new Intent(this,)
-                //startActivityForResult();
                 Evaluacion evaluacion = new Evaluacion();
                 evaluacion.setRubrica(spinner.getSelectedItem().toString());
                 evaluacion.setNumber(editText.getText().toString());
