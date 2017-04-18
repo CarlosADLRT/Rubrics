@@ -44,10 +44,16 @@ public class AddEvaluacionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Aquí va la actividad del relleno de
                 //Intent intent = new Intent(this,)
+                //startActivityForResult();
+                String asignatura = getIntent().getStringExtra("Asignatura").toString();
                 Evaluacion evaluacion = new Evaluacion();
                 evaluacion.setRubrica(spinner.getSelectedItem().toString());
                 evaluacion.setNumber(editText.getText().toString());
                 evaluacion.save();
+                AsignaturaEvaluacion asev = new AsignaturaEvaluacion();
+                asev.setAsignatura(asignatura);
+                asev.setEvaluacion(editText.getText().toString());
+                asev.save();
                 finish();
             }
         });

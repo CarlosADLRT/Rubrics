@@ -51,8 +51,10 @@ public class Reportes extends Fragment {
                 switch (checkedId) {
                     case R.id.radio_eva:
                         final String asignatura = spinner.getSelectedItem().toString();
-                        List<Evaluacion> asignaturas = new Select().from(Evaluacion.class).queryList();
-                        ArrayAdapter<Evaluacion> adapterarray = new ArrayAdapter<Evaluacion>(getContext(), R.layout.spinner_item, asignaturas);
+                        List<AsignaturaEvaluacion> test = new Select().from(AsignaturaEvaluacion.class).queryList();
+
+                        List<AsignaturaEvaluacion> asignaturas = new Select().from(AsignaturaEvaluacion.class).where(AsignaturaEvaluacion_Table.Asignatura.is(asignatura)).queryList();
+                        ArrayAdapter<AsignaturaEvaluacion> adapterarray = new ArrayAdapter<AsignaturaEvaluacion>(getContext(), R.layout.spinner_item, asignaturas);
                         adapterarray.setDropDownViewResource(R.layout.spinner_item);
                         spinnerEst.setAdapter(adapterarray);
                         spinnerEst.setVisibility(View.VISIBLE);

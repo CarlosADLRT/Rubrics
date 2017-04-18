@@ -43,14 +43,19 @@ public class AsignaturasActivity extends AppCompatActivity implements AdapterEva
     }
 
     public void Click(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.activity_asignaturas_button_addEstudiante:
-                Intent intent = new Intent(this, AddEstudiante.class);
+                intent = new Intent(this, AddEstudiante.class);
                 intent.putExtra("Asignatura", toolbar.getTitle().toString());
                 startActivityForResult(intent, 0);
                 break;
             case R.id.activity_asignaturas_button_addExamen:
-                startActivityForResult(new Intent(this, AddEvaluacionActivity.class), 0);
+                intent = new Intent(this, AddEvaluacionActivity.class);
+
+                intent.putExtra("Asignatura", toolbar.getTitle().toString());
+
+                startActivityForResult(intent, 0);
                 break;
             default:
 
