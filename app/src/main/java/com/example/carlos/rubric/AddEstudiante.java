@@ -36,7 +36,6 @@ public class AddEstudiante extends AppCompatActivity {
                 cursando.setEstudiante(editText.getText().toString());
                 cursando.save();
                 List<Cursando> list = new Select().from(Cursando.class).queryList();
-
                 finish();
             }
         });

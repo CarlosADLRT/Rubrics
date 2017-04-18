@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.raizlabs.android.dbflow.sql.language.Select;
@@ -17,6 +18,7 @@ public class AddEvaluacionActivity extends AppCompatActivity {
     private Toolbar actionBar;
     private Spinner spinner;
     private Button button;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class AddEvaluacionActivity extends AppCompatActivity {
         actionBar = (Toolbar) findViewById(R.id.acitivity_add_evaluacion_toolbar);
         button = (Button) findViewById(R.id.acitivity_add_evaluacion_button);
         spinner = (Spinner) findViewById(R.id.activity_add_evalucion_spinner);
+        editText = (EditText) findViewById(R.id.acitivity_add_evaluacion_edittext);
         Rubric rubric = new Rubric();
         rubric.setRubric("Carlos");
         rubric.setAsignatura("Español");
@@ -43,8 +46,8 @@ public class AddEvaluacionActivity extends AppCompatActivity {
                 //Intent intent = new Intent(this,)
                 //startActivityForResult();
                 Evaluacion evaluacion = new Evaluacion();
-                evaluacion.setRubrica("1");
-                evaluacion.setNumber("1");
+                evaluacion.setRubrica(spinner.getSelectedItem().toString());
+                evaluacion.setNumber(editText.getText().toString());
                 evaluacion.save();
                 finish();
             }
