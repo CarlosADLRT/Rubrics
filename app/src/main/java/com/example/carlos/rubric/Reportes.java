@@ -83,18 +83,6 @@ public class Reportes extends Fragment {
         }
     }
 
-    public void comprobarModoPago(View view) {
-        if (radioGroup.getCheckedRadioButtonId() == R.id.radio_eva) {
-
-
-        } else {
-            if (radioGroup.getCheckedRadioButtonId() == R.id.radio_est) {
-
-
-            }
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
